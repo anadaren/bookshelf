@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from 'react';
+
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import CloseIcon from '@mui/icons-material/Close';
 
-const Modal = ({show, item, onClose}) => {
+// Information overlay when book is clicked on
+const Modal = ({show, item, isFav, isRead, onClose, toggleFav, toggleRead}) => {
+
     if(!show) return null;
 
     let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
     let amount = item.saleInfo.listPrice && item.saleInfo.listPrice.amount;
+
 
 
     return (
@@ -27,13 +31,13 @@ const Modal = ({show, item, onClose}) => {
                         <h4>{item.volumeInfo.publisher}<span>{item.volumeInfo.publishedDate}</span></h4>
                         <h4>{amount}</h4>
                         <div className="book-buttons">
-                                    <div className="tooltip"><FavoriteBorderIcon color="disabled"  onClick={() => { console.log("fav")}}/>
+                                    <div className="tooltip" id="favs" onClick={toggleFav}>{isFav ? <FavoriteIcon color="disabled"/> : <FavoriteBorderIcon color="disabled"/>}
                                         <span className="tooltiptext">Add to Favorites</span>
-                                        </div>
-                                        <div className="tooltip"><BookmarkBorderIcon color="disabled"  onClick={() => { console.log("read")}}/>
-                                        <span className="tooltiptext">Add to Read List</span>
-                                        </div>
                                     </div>
+                                    <div className="tooltip" id="reads" onClick={toggleRead}>{isRead ? <BookmarkIcon color="disabled"/> : <BookmarkBorderIcon color="disabled"/>}
+                                        <span className="tooltiptext">Add to Read List</span>
+                                    </div>
+                        </div>
                         <a href={item.volumeInfo.previewLink}><button>More</button></a>
                     </div>
                     

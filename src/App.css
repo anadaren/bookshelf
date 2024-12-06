@@ -85,17 +85,19 @@
 
 
 /* Card */
-.container {
-  width: 85%;
+#book-container {
   margin: auto;
   margin-top: 25px;
+  width: 100%;
+  height: auto;
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-gap: 20px;
-  box-sizing: border-box;
+  place-items: center;
+  gap: 50px
 }
 
 .card{
+  width: 200px;
   background-color: var(--secondary-color);
   border-radius: 1rem;
   padding: 0.5rem;
@@ -123,7 +125,11 @@
   min-height: 130px;
 }
 .card .bottom .title{
-  font-size: 14px;
+  font-size: 18px;
+  margin: 0px;
+}
+.card .bottom .author{
+  font-size: 13px;
   margin: 0px;
 }
 .card .bottom .amount{
@@ -231,12 +237,16 @@
   justify-content: left;
 }
 
-/* Fav + Read List */
-
-.favorites {
-  display: hidden;
+nav h1 {
+  cursor: pointer;
 }
 
-.read-list {
-  display: hidden;
+/* Fav + Read List */
+
+#favorites {
+  display: none;
+}
+
+#read-list {
+  display: none;
 }

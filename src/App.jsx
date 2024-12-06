@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState, useContext } from 'react';
 import './App.css';
 import Card from '/src/card.jsx';
 import axios from 'axios';
+import { BookContext } from './book-context';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 
@@ -10,37 +11,55 @@ const API_KEY = 'AIzaSyBqsNcfxG7ol5yow21YDoMzE0KkaS22c8g';
 const App = () => {
   const [searchInput, setSearchInput] = useState("");
   const [bookData, setbookData] = useState([]);
-  const [favData, setfavData] = useState([]);
-  const [readData, setreadData] = useState([]);
+  const { favData, readData } = useContext(BookContext);
+  
 
   const search = () => {
       // Fetch API data
       axios.get('https://www.googleapis.com/books/v1/volumes?q='+searchInput+'&key=AIzaSyBqsNcfxG7ol5yow21YDoMzE0KkaS22c8g'+'&maxResults=40')
       .then(res=>setbookData(res.data.items))
       .catch(err=>console.log(err))
-      
   }
 
-  const addFav = (book) => {
-    console.log(setfavData);
+  const hideAll = () => {
+    var x = document.getElementById("favorites");
+    var y = document.getElementById("read-list");
+    var z = document.getElementById("book-container");
+    
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "none";
   }
 
-  const addRead = (book) => {
-    console.log(setreadData);
+  const showFav = () => {
+    var x = document.getElementById("favorites");
+    hideAll();
+    x.style.display = "block";
   }
-  
+
+  const showRead = () => {
+    var x = document.getElementById("read-list");
+    hideAll();
+    x.style.display = "block";
+  }
+
+  const showBooks = () => {
+    var x = document.getElementById("book-container");
+    hideAll();
+    x.style.display = "grid";
+  }
 
   return (
     <>
     <nav>
-    <h1>Bookshelf</h1>
+    <h1 onClick={() => { hideAll() }}>Bookshelf</h1>
     </nav>
 
     <div className="book-buttons">
-        <div className="tooltip"><FavoriteIcon onClick={() => { addFav() }}/>
+        <div className="tooltip"><FavoriteIcon onClick={showFav}/>
         <span className="tooltiptext">Favorites</span>
         </div>
-        <div className="tooltip"><BookmarkIcon  onClick={() => { addRead() }}/>
+        <div className="tooltip"><BookmarkIcon  onClick={showRead}/>
         <span className="tooltiptext">Read List</span>
         </div>
     </div>
@@ -49,31 +68,38 @@ const App = () => {
 
     <input type="input"
           placeholder="Search for Books"
-          onKeyPress={event => {
+          onKeyPress={(event) => {
             if(event.key == "Enter") {
               search();
+              showBooks();
             }
           }}
           onChange={e => setSearchInput(e.target.value)}
         />
-        <button onClick={() => {search()}}>Search</button>
+        <button onClick={() => {search(); showBooks();}}>Search</button>
         
-        <div className='container'>
+        <div id='book-container'>
           {
             <Card book={bookData}/>
           }
         </div>
 
-        <div className='favorites'>
-          {
-            <Card book={favData}/>
-          }
+        <div id='favorites' style={{ display: 'none' }}>
+          <h2>Favorite Books</h2>
+          {/*Object.keys(favData).length > 0 ? (
+            <Card book={Object.values(favData)} />
+          ) : (
+            <p>No favorited books.</p>
+          )*/}
         </div>
 
-        <div className='read-list'>
-          {
-            <Card book={readData}/>
-          }
+        <div id='read-list' style={{ display: 'none' }}>
+          <h2>Read List</h2>
+          {/*Object.keys(readData).length > 0 ? (
+            <Card book={Object.values(readData)} />
+          ) : (
+            <p>No books on read list.</p>
+          )*/}
         </div>
     
     </div>
