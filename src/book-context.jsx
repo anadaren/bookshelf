@@ -11,6 +11,7 @@ export const BookContextProvider = (props) => {
   const [favData, setfavData] = useState(getDefaults());
   const [readData, setreadData] = useState(getDefaults());
 
+
   const getTotalFav = () => {
     let totalAmount = 0;
     for (const item in favData) {
