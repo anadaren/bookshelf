@@ -25,8 +25,6 @@ const Card = ({book}) => {
             ...prev,
             [currentBookId]: !prev[currentBookId], // Toggle the specific book's state
         }));
-
-        console.log(favorites[currentBookId]);
           
         // Adds or removes book to favorites:
         if (favorites[currentBookId]) {

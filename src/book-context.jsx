@@ -12,6 +12,7 @@ export const BookContextProvider = (props) => {
   const [readData, setreadData] = useState(getDefaults());
 
 
+  // Gets total number of favorite books
   const getTotalFav = () => {
     let totalAmount = 0;
     for (const item in favData) {
@@ -22,32 +23,55 @@ export const BookContextProvider = (props) => {
     return totalAmount;
   };
 
+  // Gets total number of read list books
+  const getTotalRead = () => {
+    let totalAmount = 0;
+    for (const item in readData) {
+      if (readData[item] > 0) {
+        totalAmount += readData[item];
+      }
+    }
+    return totalAmount;
+  };
+
   // Adds books to fav
   const addFav = (bookId) => {
     setfavData((prev) => ({ ...prev, [bookId]: (prev[bookId] || 0) + 1 }));
+    console.log("Added " + bookId.volumeInfo.title + " to favorites.");
   };
   // Adds books to read list
   const addRead = (bookId) => {
     setreadData((prev) => ({ ...prev, [bookId]: (prev[bookId] || 0) + 1 }));
+    console.log("Added " + bookId.volumeInfo.title + " to read list.");
   };
   // Removes books from favs
   const removeFav = (bookId) => {
-    setfavData((prev) => ({ ...prev, [bookId]: prev[bookId] - 1 }));
+    setfavData((prev) => ({ ...prev, [bookId]: prev[bookId] - 1}));
+    console.log("Removed " + bookId.volumeInfo.title + " from favorites.");
   };
   // Removes books from read list
   const removeRead = (bookId) => {
     setreadData((prev) => ({ ...prev, [bookId]: prev[bookId] - 1 }));
+    console.log("Removed " + bookId.volumeInfo.title + " from read list.");
+  };
+
+  const printFavBooks = () => {
+    Object.keys(favData).forEach((bookId) => {
+      console.log(`Book ID: ${favData}, Count: ${favData[bookId]}`);
+    });
   };
 
 
   const contextValue = {
     getTotalFav,
+    getTotalRead,
     favData,
     readData,
     addFav,
     addRead,
     removeFav,
-    removeRead
+    removeRead,
+    printFavBooks
   };
 
   return (
