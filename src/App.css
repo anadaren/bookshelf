@@ -182,15 +182,13 @@
 }
 .overlay-inner .close{
   position: sticky;
+  float: right;
   top: 0rem;
-  margin-right: auto;
-  outline: none;
   border: none;
-  font-size: 17px;
   background-color: transparent;
   padding: 5px;
-  text-align: left;
 }
+
 .overlay-inner .inner-box{
   margin-top: 30px;
   display: flex;

@@ -20,7 +20,11 @@ const Modal = ({show, item, isFav, isRead, onClose, toggleFav, toggleRead}) => {
         <>
         <div className="overlay">
             <div className="overlay-inner">
-            <button className="close" onClick={onClose}><CloseIcon color="disabled"/></button>
+            
+            <button className="close" onClick={onClose}>
+                <CloseIcon color="disabled"/>
+            </button>
+
                 <div className="inner-box">
                     <img src={thumbnail}/>
                     

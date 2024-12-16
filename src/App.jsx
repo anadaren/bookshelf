@@ -11,7 +11,7 @@ const API_KEY = 'AIzaSyBqsNcfxG7ol5yow21YDoMzE0KkaS22c8g';
 const App = () => {
   const [searchInput, setSearchInput] = useState("");
   const [bookData, setbookData] = useState([]);
-  const { favData, readData, getTotalFav, getTotalRead, printFavBooks } = useContext(BookContext);
+  const { favData, readData, getTotalFav, getTotalRead } = useContext(BookContext);
   
 
   const search = () => {
@@ -87,7 +87,15 @@ const App = () => {
         <div id='favorites' style={{ display: 'none' }}>
           <h2>Favorite Books</h2>
           {Object.keys(favData).length > 0 ? (
-            <h1>{getTotalFav()}</h1>
+             <>
+             <div id='book-container'>
+            {
+             
+              <Card book={favData}/>
+              
+            }
+          </div>
+            </>
           ) : (
             <p>No favorited books.</p>
           )}
@@ -96,7 +104,13 @@ const App = () => {
         <div id='read-list' style={{ display: 'none' }}>
           <h2>Read List</h2>
           {Object.keys(readData).length > 0 ? (
-            <h1>{getTotalRead()}</h1>
+            <>
+            <div id='book-container'>
+            {
+              <Card book={readData}/>
+            }
+          </div>
+          </>
           ) : (
             <p>No books on read list.</p>
           )}
