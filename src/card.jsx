@@ -15,40 +15,30 @@ const Card = ({book}) => {
     const [readList, setReadList] = useState({});
 
     // Import methods for adding/removing books to/from favorites and read lists from BookContext
-    const { addFav, addRead, removeFav, removeRead } = useContext(BookContext);
+    const { favData, readData, addFav, addRead, removeFav, removeRead } = useContext(BookContext);
 
     // Toggles if book is in favorites
     const toggleFavorite = (item) => {
         const currentBookId = item.id;
 
-        setFavorites((prev) => ({
-            ...prev,
-            [currentBookId]: !prev[currentBookId], // Toggle the specific book's state
-        }));
-          
-        // Adds or removes book to favorites:
-        if (favorites[currentBookId]) {
+        // If book is already in favData, remove it, otherwise add it
+        if(favData.some((favBook) => favBook.id === currentBookId)) {
             removeFav(item);
-          } else {
+        } else {
             addFav(item);
-          };
+        }
     };
 
     // Toggles if book is on read list
     const toggleRead = (item) => {
         const currentBookId = item.id;
 
-        setReadList((prev) => ({
-            ...prev,
-            [currentBookId]: !prev[currentBookId], // Toggle the specific book's state
-          }));
-
-        // Adds or removes book to read list:
-        if (readList[currentBookId]) {
+        // If book is already in readData, remove it, otherwise add it
+        if(readData.some((readBook) => readBook.id === currentBookId)) {
             removeRead(item);
-          } else {
+        } else {
             addRead(item);
-          }
+        }
     };
 
     return (
@@ -58,8 +48,14 @@ const Card = ({book}) => {
                     if(!item) return null;
 
                     const id = item.id;
+
                     let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
                     let amount = item.saleInfo.listPrice && item.saleInfo.listPrice.amount;
+                    
+                    const isFavorited = favData.some((favBook) => favBook.id === id);
+                    const isRead = readData.some((readBook) => readBook.id === id);
+
+                    
                     if(thumbnail != undefined && amount != undefined) {
                         return (
                             <>
@@ -71,10 +67,10 @@ const Card = ({book}) => {
                                     <p className="amount">&#36;{amount}</p>
                                 </div>
                                 <div className="book-buttons">
-                                    <div className="tooltip" onClick={()=>{toggleFavorite(item)}}>{favorites[id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                                    <div className="tooltip" onClick={()=>{toggleFavorite(item)}}>{isFavorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                                         <span className="tooltiptext">Add to Favorites</span>
                                         </div>
-                                        <div className="tooltip" onClick={()=>{toggleRead(item)}}>{readList[id] ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                                        <div className="tooltip" onClick={()=>{toggleRead(item)}}>{isRead ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                                         <span className="tooltiptext">Add to Read List</span>
                                         </div>
                                     </div>

@@ -1,50 +1,28 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0rem;
+  padding: 0 2rem;
   text-align: center;
-}
+  background-color: navy;
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  --primary-color: rgba(233, 239, 255, 0.5);
+  --secondary-color: rgba(83, 83, 83, 0.5);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* End of defaults */
-
 
 /* Nav */
+nav {
+  width: 100%;
+}
+nav h1 {
+  cursor: pointer;
+  font-size: 60px;
+}
+
+.books h1 {
+  font-size: 40px;
+  margin-top: 3rem;
+}
+
 
 .tooltip {
   position: relative;
@@ -83,6 +61,13 @@
   visibility: visible;
 }
 
+footer {
+  padding: 3rem;
+}
+
+.books {
+  /*min-width: 80rem;*/
+}
 
 /* Card */
 #book-container {
@@ -91,23 +76,21 @@
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  place-items: center;
-  gap: 50px
+  grid-template-columns: repeat(4, 1fr);
+  gap: 75px 25px;
 }
 
-.card{
-  width: 200px;
+.card {
+
+  min-height: 400px;
   background-color: var(--secondary-color);
   border-radius: 1rem;
   padding: 0.5rem;
+  margin: 0 10px;
   margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
   box-shadow: 0 5px 5px rgba(212,185,150,.5);
   transition: .5s;
   text-align: center;
-  position: relative;
 }
 .card:hover{
   transform: scale(0.98);
@@ -124,26 +107,30 @@
   flex-direction: column;
   min-height: 130px;
 }
-.card .bottom .title{
+.card .title{
   font-size: 18px;
-  margin: 0px;
+  margin: 10px 0;
+  font-weight: bold;
+
 }
-.card .bottom .author{
-  font-size: 13px;
+.card .author{
+  font-size: 16px;
   margin: 0px;
+  font-weight: normal;
 }
-.card .bottom .amount{
+.card .amount{
   position: relative;
   background-color: var(--primary-color);
-  color: var(--secondary-color);
-  font-size: 13px;
+  color: black;
+  font-size: 14px;
   font-weight: bold;
-  padding: 0.2rem;
+  padding: 0rem;
 }
 
 .card .book-buttons {
   display: flex;
   justify-content: space-around;
+
 }
 
 .card .book-buttons .tooltip .tooltiptext {
@@ -152,7 +139,9 @@
 }
 
 
-/* Overlay */
+
+
+/* Overlay/Modal */
 
 
 .overlay{
@@ -192,7 +181,7 @@
 .overlay-inner .inner-box{
   margin-top: 30px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 .overlay-inner .inner-box img{
   margin-right: 20px;
@@ -235,9 +224,9 @@
   justify-content: left;
 }
 
-nav h1 {
-  cursor: pointer;
-}
+
+
+
 
 /* Fav + Read List */
 

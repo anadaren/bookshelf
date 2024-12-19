@@ -53,7 +53,7 @@ const App = () => {
     <>
     <nav>
     <h1 onClick={() => { hideAll() }}>Bookshelf</h1>
-    </nav>
+    
 
     <div className="book-buttons">
         <div className="tooltip"><FavoriteIcon onClick={showFav}/>
@@ -63,8 +63,6 @@ const App = () => {
         <span className="tooltiptext">Read List</span>
         </div>
     </div>
-    
-    <div className="books">
 
     <input type="input"
           placeholder="Search for Books"
@@ -77,7 +75,11 @@ const App = () => {
           onChange={e => setSearchInput(e.target.value)}
         />
         <button onClick={() => {search(); showBooks();}}>Search</button>
-        
+
+    </nav> 
+
+    <div className="books">
+
         <div id='book-container'>
           {
             <Card book={bookData}/>
@@ -85,16 +87,15 @@ const App = () => {
         </div>
 
         <div id='favorites' style={{ display: 'none' }}>
-          <h2>Favorite Books</h2>
+          <h1>Favorite Books</h1>
           {Object.keys(favData).length > 0 ? (
-             <>
-             <div id='book-container'>
+            <>
+            <div id='book-container'>
             {
-             
-              <Card book={favData}/>
               
+              <Card book={favData}/>
             }
-          </div>
+            </div>
             </>
           ) : (
             <p>No favorited books.</p>
@@ -102,15 +103,16 @@ const App = () => {
         </div>
 
         <div id='read-list' style={{ display: 'none' }}>
-          <h2>Read List</h2>
+          <h1>Read List</h1>
           {Object.keys(readData).length > 0 ? (
             <>
             <div id='book-container'>
             {
+
               <Card book={readData}/>
             }
-          </div>
-          </>
+            </div>
+            </>
           ) : (
             <p>No books on read list.</p>
           )}
@@ -120,6 +122,7 @@ const App = () => {
 
        
       <footer>
+        <hr></hr>
       <p className="credits">
         ©2024 Built and Designed by <a href="https://github.com/anadaren">Anastasia Green</a>
       </p>
