@@ -92,7 +92,6 @@ const App = () => {
             <>
             <div id='book-container'>
             {
-              
               <Card book={favData}/>
             }
             </div>
@@ -108,7 +107,6 @@ const App = () => {
             <>
             <div id='book-container'>
             {
-
               <Card book={readData}/>
             }
             </div>

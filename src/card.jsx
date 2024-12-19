@@ -78,8 +78,8 @@ const Card = ({book}) => {
                             <Modal // Displays whenever book is clicked
                                 show={show} 
                                 item={bookItem} 
-                                isFav={favorites} 
-                                isRead={readList} 
+                                isFav={isFavorited} 
+                                isRead={isRead} 
                                 onClose={()=>setShow(false)} 
                                 toggleFav={()=>toggleFavorite(bookItem)} 
                                 toggleRead={()=>toggleRead(bookItem)}

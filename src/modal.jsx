@@ -35,10 +35,10 @@ const Modal = ({show, item, isFav, isRead, onClose, toggleFav, toggleRead}) => {
                         <h4>{item.volumeInfo.publisher}<span>{item.volumeInfo.publishedDate}</span></h4>
                         <h4>{amount}</h4>
                         <div className="book-buttons">
-                                    <div className="tooltip" id="favs" onClick={toggleFav}>{isFav[item.id] ? <FavoriteIcon color="disabled"/> : <FavoriteBorderIcon color="disabled"/>}
+                                    <div className="tooltip" id="favs" onClick={toggleFav}>{isFav ? <FavoriteIcon color="disabled"/> : <FavoriteBorderIcon color="disabled"/>}
                                         <span className="tooltiptext">Add to Favorites</span>
                                     </div>
-                                    <div className="tooltip" id="reads" onClick={toggleRead}>{isRead[item.id] ? <BookmarkIcon color="disabled"/> : <BookmarkBorderIcon color="disabled"/>}
+                                    <div className="tooltip" id="reads" onClick={toggleRead}>{isRead ? <BookmarkIcon color="disabled"/> : <BookmarkBorderIcon color="disabled"/>}
                                         <span className="tooltiptext">Add to Read List</span>
                                     </div>
                         </div>
