@@ -1,61 +1,45 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const BookContext = createContext(null);
 
-/*const getDefaults = () => {
-  let fav, read = {};
-  return fav, read;
-};*/
-
 export const BookContextProvider = (props) => {
-  const [favData, setfavData] = useState([]);
-  const [readData, setreadData] = useState([]);
+  const [favData, setfavData] = useState(() => {
+    const storedFavData = localStorage.getItem("favData");
+    return storedFavData ? JSON.parse(storedFavData) : [];
+  });
+  const [readData, setreadData] = useState(() => {
+    const storedReadData = localStorage.getItem("readData");
+    return storedReadData ? JSON.parse(storedReadData) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favData", JSON.stringify(favData));
+  }, [favData]);
+
+  useEffect(() => {
+    localStorage.setItem("readData", JSON.stringify(readData));
+  }, [readData]);
 
 
   // Gets total number of favorite books
-  const getTotalFav = () => {
-    let totalAmount = favData.length;
-    return totalAmount;
-  };
+  const getTotalFav = () => favData.length;
 
   // Gets total number of read list books
-  const getTotalRead = () => {
-    let totalAmount = readData.length;
-    return totalAmount;
-  };
+  const getTotalRead = () => readData.length;
 
-  // Adds books to fav
-  const addFav = (bookId) => {
-    
-    setfavData((prev) => [ ...prev, bookId ]);  // Async function
 
-    // CODE FOR TESTING //
-    /*setfavData((prev) => {    
-      const updatedFavData = [...prev, bookId];
-      console.log("Added " + bookId.volumeInfo.title + " to favorites.");
-      console.log(updatedFavData);
-      return updatedFavData;
-    });*/
-  };
-  // Adds books to read list
-  const addRead = (bookId) => {
-    setreadData((prev) => [ ...prev, bookId ]);  // Async function
+  // Adds books to fav (async function)
+  const addFav = (bookId) => setfavData((prev) => [ ...prev, bookId ]);
+  
+  // Adds books to read list (async function)
+  const addRead = (bookId) => setreadData((prev) => [ ...prev, bookId ]);
 
-    // CODE FOR TESTING //
-    /*setfavData((prev) => {    
-      const updatedReadData = [...prev, bookId];
-      console.log("Added " + bookId.volumeInfo.title + " to read list.");
-      console.log(updatedReadData);
-      return updatedReadData;
-    });*/
-  };
   // Removes books from favs
   const removeFav = (bookId) => {
     var id = bookId.id;
     setfavData((prev) => {
       const updatedFavData = prev.filter((obj) => obj.id !== id);
       //console.log("Removed " + bookId.volumeInfo.title + " from favorites.");
-      //console.log(updatedFavData);
       return updatedFavData;
     });
   };
@@ -65,11 +49,9 @@ export const BookContextProvider = (props) => {
     setreadData((prev) => {
       const updatedReadData = prev.filter((obj) => obj.id !== id);
       //console.log("Removed " + bookId.volumeInfo.title + " from read list.");
-      //console.log(updatedReadData);
       return updatedReadData;
     });
   };
-
 
 
   const contextValue = {

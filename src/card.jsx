@@ -59,21 +59,25 @@ const Card = ({book}) => {
                     if(thumbnail != undefined && amount != undefined) {
                         return (
                             <>
-                            <div key={id} className = "card">
-                                <img src={thumbnail} alt="" onClick={()=>{setItem(item); setShow(true)}}/>
-                                <div className="bottom">
-                                    <h3 className="title">{item.volumeInfo.title}</h3>
-                                    <h4 className="author">{item.volumeInfo.authors}</h4>
-                                    <p className="amount">&#36;{amount}</p>
+                            <div key={id} className = "card" >
+                                <div className="module-link" onClick={()=>{setItem(item); setShow(true)}}>
+                                    <img src={thumbnail} alt=""/>
+                                    <div className="bottom">
+                                        <h3 className="title">{item.volumeInfo.title}</h3>
+                                        <h4 className="author">{item.volumeInfo.authors}</h4>
+                                        <p className="amount">&#36;{amount}</p>
+                                    
+                                    </div>
                                 </div>
-                                <div className="book-buttons">
-                                    <div className="tooltip" onClick={()=>{toggleFavorite(item)}}>{isFavorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                                        <span className="tooltiptext">Add to Favorites</span>
+                                    <div className="book-buttons">
+                                        <div className="tooltip" onClick={()=>{toggleFavorite(item)}}>{isFavorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                                            <span className="tooltiptext">Add to Favorites</span>
                                         </div>
                                         <div className="tooltip" onClick={()=>{toggleRead(item)}}>{isRead ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-                                        <span className="tooltiptext">Add to Read List</span>
+                                            <span className="tooltiptext">Add to Read List</span>
                                         </div>
                                     </div>
+                                  
                             </div>
                             <Modal // Displays whenever book is clicked
                                 show={show} 

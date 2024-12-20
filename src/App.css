@@ -1,28 +1,39 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
   text-align: center;
-  background-color: navy;
 
-  --primary-color: rgba(233, 239, 255, 0.5);
-  --secondary-color: rgba(83, 83, 83, 0.5);
+  --primary-color:  rgb(21, 21, 21);
+  --secondary-color: rgba(65, 65, 65, 0.75);
+  --hover-color: rgba(233, 239, 255, 0.5)
 }
+
 
 /* Nav */
 nav {
   width: 100%;
+  background-color: var(--primary-color);
+  padding-top: 0.01rem;
+  padding-bottom: 3rem;
 }
 nav h1 {
   cursor: pointer;
   font-size: 60px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-bottom: 2rem;
+}
+
+
+/* Book Section */
+.books {
+  padding: 0 2rem;
 }
 
 .books h1 {
   font-size: 40px;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
 
 .tooltip {
   position: relative;
@@ -61,18 +72,13 @@ nav h1 {
   visibility: visible;
 }
 
-footer {
-  padding: 3rem;
-}
 
-.books {
-  /*min-width: 80rem;*/
-}
 
-/* Card */
+
+/* Book Cards */
 #book-container {
   margin: auto;
-  margin-top: 25px;
+  margin-top: 4rem;
   width: 100%;
   height: auto;
   display: grid;
@@ -81,14 +87,13 @@ footer {
 }
 
 .card {
-
-  min-height: 400px;
+  min-height: 300px;
   background-color: var(--secondary-color);
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 0 10px;
   margin-bottom: 10px;
-  box-shadow: 0 5px 5px rgba(212,185,150,.5);
+  box-shadow: 0 5px 5px var(--hover-color);
   transition: .5s;
   text-align: center;
 }
@@ -105,6 +110,7 @@ footer {
 .card .bottom{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 130px;
 }
 .card .title{
@@ -120,17 +126,18 @@ footer {
 }
 .card .amount{
   position: relative;
-  background-color: var(--primary-color);
+  background-color: var(--hover-color);
   color: black;
   font-size: 14px;
   font-weight: bold;
   padding: 0rem;
+  margin: 0;
 }
 
 .card .book-buttons {
   display: flex;
   justify-content: space-around;
-
+  margin-top: 1rem;
 }
 
 .card .book-buttons .tooltip .tooltiptext {
@@ -140,9 +147,7 @@ footer {
 
 
 
-
 /* Overlay/Modal */
-
 
 .overlay{
   min-height: 100vh;
@@ -236,4 +241,9 @@ footer {
 
 #read-list {
   display: none;
+}
+
+/* Footer*/
+footer {
+  padding: 3rem;
 }
