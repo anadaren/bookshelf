@@ -16,7 +16,7 @@ const App = () => {
 
   const search = () => {
       // Fetch API data
-      axios.get('https://www.googleapis.com/books/v1/volumes?q='+searchInput+'&key=AIzaSyBqsNcfxG7ol5yow21YDoMzE0KkaS22c8g'+'&maxResults=40')
+      axios.get('https://www.googleapis.com/books/v1/volumes?q='+searchInput+'&key='+API_KEY+'&maxResults=40')
       .then(res=>setbookData(res.data.items))
       .catch(err=>console.log(err))
   }
@@ -90,7 +90,9 @@ const App = () => {
           <h1>Favorite Books</h1>
           {Object.keys(favData).length > 0 ? (
             <>
+            <p className='list-text'>{getTotalFav()} books in favorites.</p>
             <div id='book-container'>
+              
             {
               <Card book={favData}/>
             }
@@ -105,6 +107,7 @@ const App = () => {
           <h1>Read List</h1>
           {Object.keys(readData).length > 0 ? (
             <>
+            <p className='list-text'>{getTotalRead()} books in read list.</p>
             <div id='book-container'>
             {
               <Card book={readData}/>

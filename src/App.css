@@ -3,8 +3,9 @@
   margin: 0 auto;
   text-align: center;
 
-  --primary-color:  rgb(21, 21, 21);
-  --secondary-color: rgba(65, 65, 65, 0.75);
+  --primary-color:  rgb(23, 23, 23);
+  --card-color: rgba(71, 71, 71, 0.75);
+  --card-hover-color: rgba(92, 92, 92, 0.8);
   --hover-color: rgba(233, 239, 255, 0.5)
 }
 
@@ -88,18 +89,18 @@ nav h1 {
 
 .card {
   min-height: 300px;
-  background-color: var(--secondary-color);
-  border-radius: 1rem;
+  background-color: var(--card-color);
+  border-radius: .5rem;
   padding: 0.5rem;
   margin: 0 10px;
   margin-bottom: 10px;
-  box-shadow: 0 5px 5px var(--hover-color);
+  box-shadow: 0 5px 7px var(--hover-color);
   transition: .5s;
   text-align: center;
 }
 .card:hover{
   transform: scale(0.98);
-  background-color: rgba(86, 86, 86, 0.8);
+  background-color: var(--card-hover-color);
   cursor: pointer;
 }
 .card img{
@@ -241,6 +242,12 @@ nav h1 {
 
 #read-list {
   display: none;
+}
+
+.list-text {
+  text-align: center;
+  font-size: 23px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* Footer*/
