@@ -1,7 +1,5 @@
 # Bookshelf
 
-Searches the Google Book API for books for you to add to a custom read and favorite lists.
+Search the Google Book API for books to add to your own custom read and favorites lists.
 
-*Work in Progress*
-
-<img width="1237" alt="Screenshot 2024-10-13 at 9 03 42 PM" src="https://github.com/user-attachments/assets/54a63776-7665-427e-900d-aeb5fa305867">
+<img width="851" alt="Screenshot 2024-12-20 at 7 38 57 PM" src="https://github.com/user-attachments/assets/234cc120-39de-42c1-9f87-1dad0536d8c6" />
