@@ -12,7 +12,6 @@ const App = () => {
   const [searchInput, setSearchInput] = useState("");
   const [bookData, setbookData] = useState([]);
   const { favData, readData, getTotalFav, getTotalRead } = useContext(BookContext);
-  
 
   const search = () => {
       // Fetch API data
@@ -74,7 +73,7 @@ const App = () => {
           }}
           onChange={e => setSearchInput(e.target.value)}
         />
-        <button onClick={() => {search(); showBooks();}}>Search</button>
+        <button id="search-button" onClick={() => {search(); showBooks();}}>Search</button>
 
     </nav> 
 
